@@ -86,7 +86,7 @@ Resumen de los cambios e implementación reflejados en el estado actual del repo
 ## Autoría y créditos
 
 - **Proyecto:** Nubelo
-- **Desarrollo:** dev joaquin vivar (VORTEX WEB)
+- **Desarrollo:** (VORTEX WEB)
 - **Datos meteorológicos:** [Open-Meteo](https://open-meteo.com/)
 
 © 2026 Nubelo.
