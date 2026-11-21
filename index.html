@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NUBELO APP: pronóstico por hora y a 7 días, calidad del aire y alertas de tormentas y otras amenazas para cualquier ciudad.">
+    <meta name="theme-color" content="#101426">
+    <title>NUBELO APP | Clima y alertas</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body data-tema="inicio">
+    <header class="encabezado">
+        <a href="./" class="logo">NUBELO</a>
+        <span class="subtitulo-logo">WEATHER APP</span>
+        <button type="button" class="boton-unidades" id="boton-unidades" aria-label="Cambiar sistema de unidades">°C · km/h</button>
+    </header>
+
+    <main class="contenedor">
+
+        <section class="buscador">
+            <h1>¡Hola, soy Nubelo, tu asistente del clima!</h1>
+            <p>Pronóstico, tormentas y alertas de tu ciudad en un solo lugar.</p>
+
+            <div class="buscador-caja">
+                <form class="formulario-busqueda" id="formulario-busqueda" role="search" novalidate>
+                    <label for="ciudad" class="solo-lectores">Nombre de la ciudad</label>
+                    <input type="text" id="ciudad" name="ciudad" placeholder="Busca una ciudad..." autocomplete="off" maxlength="80" required
+                           aria-autocomplete="list" aria-controls="sugerencias" aria-expanded="false">
+                    <button type="button" class="boton-secundario" id="boton-ubicacion" title="Usar mi ubicación" aria-label="Usar mi ubicación">📍</button>
+                    <button type="submit" id="boton-buscar">Buscar</button>
+                </form>
+                <ul class="sugerencias" id="sugerencias" role="listbox" aria-label="Ciudades sugeridas" hidden></ul>
+            </div>
+
+            <div class="favoritos" id="favoritos" aria-label="Ciudades favoritas" hidden></div>
+        </section>
+
+        <section class="resultado" id="resultado">
+
+            <div class="mensaje-inicial" id="mensaje" role="status">
+                <span id="mensaje-icono">☁️</span>
+                <h2 id="mensaje-titulo">¡Bienvenido a Nubelo!</h2>
+                <p id="mensaje-texto">Escribe el nombre de una ciudad o usa 📍 para consultar el clima y las alertas.</p>
+            </div>
+
+            <div id="panel-clima" hidden>
+
+                <section class="bloque bloque-alertas" aria-labelledby="titulo-alertas">
+                    <div class="bloque-cabecera">
+                        <h3 id="titulo-alertas">Alertas y amenazas</h3>
+                        <span class="insignia" id="alertas-resumen">--</span>
+                    </div>
+                    <p class="bloque-nota">Análisis automático de las próximas 48 horas.</p>
+                    <div class="lista-alertas" id="lista-alertas"></div>
+                </section>
+
+                <article class="tarjeta-clima" id="tarjeta-clima">
+                    <div class="tarjeta-cabecera">
+                        <div>
+                            <h2 id="nombre-ciudad">--</h2>
+                            <p class="ubicacion" id="ubicacion">--</p>
+                        </div>
+                        <div class="tarjeta-acciones">
+                            <button type="button" class="boton-icono" id="boton-favorito" aria-pressed="false" title="Guardar en favoritos" aria-label="Guardar en favoritos">☆</button>
+                            <button type="button" class="boton-icono" id="boton-actualizar" title="Actualizar ahora" aria-label="Actualizar ahora">↻</button>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-principal">
+                        <span class="icono-clima" id="icono-clima" aria-hidden="true">☁️</span>
+                        <div>
+                            <p class="temperatura"><span id="temperatura">--</span><span class="unidad" id="unidad-temp">°C</span></p>
+                            <p class="descripcion-clima" id="descripcion-clima">--</p>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-datos">
+                        <p><span class="etiqueta">Sensación térmica</span><strong id="sensacion">--</strong></p>
+                        <p><span class="etiqueta">Máx / Mín hoy</span><strong id="maxmin">--</strong></p>
+                        <p class="dato-ancho"><span class="etiqueta">Lluvia próximas horas</span><strong id="resumen-lluvia">--</strong></p>
+                    </div>
+
+                    <p class="actualizado" id="estado-actualizacion">--</p>
+                </article>
+
+                <section class="bloque" aria-labelledby="titulo-horas">
+                    <div class="bloque-cabecera">
+                        <h3 id="titulo-horas">Próximas 24 horas</h3>
+                        <span class="leyenda"><i class="punto punto-temp"></i>Temperatura <i class="punto punto-lluvia"></i>Prob. de lluvia</span>
+                    </div>
+                    <div class="horas-scroll" tabindex="0" aria-label="Pronóstico por hora, desplázate horizontalmente">
+                        <div class="horas-interior" id="horas-interior"></div>
+                    </div>
+                </section>
+
+                <section class="bloque" aria-labelledby="titulo-dias">
+                    <div class="bloque-cabecera">
+                        <h3 id="titulo-dias">Pronóstico a 7 días</h3>
+                    </div>
+                    <div class="lista-dias" id="lista-dias"></div>
+                </section>
+
+                <section class="bloque" aria-labelledby="titulo-detalles">
+                    <div class="bloque-cabecera">
+                        <h3 id="titulo-detalles">Condiciones actuales</h3>
+                    </div>
+                    <div class="rejilla-detalles" id="detalles"></div>
+                </section>
+
+                <p class="aviso">
+                    Las alertas de Nubelo se calculan automáticamente a partir de modelos de pronóstico
+                    y <strong>no son avisos oficiales</strong>. Ante tormentas, ciclones u otras emergencias,
+                    consulta al servicio meteorológico y a Protección Civil de tu país
+                    (en México: SMN/Conagua).
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pie-pagina">
+        <p>&copy; 2026 Diseñado y Desarrollado por <span><a href="https://vortexweb30104.netlify.app/">VORTEX WEB</a></span></p>
+        <p class="pie-creditos">Datos meteorológicos: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo.com</a></p>
+    </footer>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>

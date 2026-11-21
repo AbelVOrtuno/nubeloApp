@@ -1,0 +1,43 @@
+# Sistema operativo
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*~
+
+# Dependencias y builds (por si se incorporan en el futuro)
+node_modules/
+dist/
+build/
+coverage/
+
+# Herramientas y cachés
+.sass-cache/
+*.map.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Entornos y archivos sensibles/locales
+.env
+.env.*
+!.env.example
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+*.log

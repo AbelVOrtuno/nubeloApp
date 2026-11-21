@@ -1,0 +1,121 @@
+@use '../base/variables' as vars;
+
+body{
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: vars.$color-fondo;
+    color: vars.$color-texto;
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+}
+.encabezado{
+    width: 100%;
+    padding: 25px 8%;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .logo{
+        color: vars.$color-texto;
+        font-size: 28px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .subtitulo-logo{
+        color: vars.$color-texto-secundario;
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+}
+.contenedor{
+    width: min(90%, 850px);
+    margin: 60px auto;
+    flex: 1;
+    
+}
+.buscador{
+    text-align: center;
+
+    h1{
+        font-size: clamp(30px, 5vw, 48px);
+        margin-bottom: 12px;
+    }
+    p{
+        color: vars.$color-texto-secundario;
+        margin-bottom: 30px;
+    }
+}
+.formulario-busqueda{
+    display: flex;
+    gap: 12px;
+    padding: 10px;
+    background: vars.$color-superficie;
+    border-radius: 14px;
+
+    input{
+        flex: 1;
+        min-width: 0;
+        padding: 14px;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: vars.$color-texto;
+        font-size: 1rem;
+    }
+    button{
+        padding: 14px 24px;
+        border: none;
+        border-radius: 10px;
+        background: vars.$color-primario;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+.resultado{
+    margin-top: 35px;
+}
+.mensaje-inicial{
+    text-align: center;
+    padding: 50px 20px;
+    background: vars.$color-superficie;
+    border-radius: 18px;
+    span{
+        font-size: 45px;
+    }
+    h2{
+        margin: 15px 0 15px;
+    }
+    p{
+        color: vars.$color-texto-secundario;
+    }
+}
+.pie-pagina{
+    width: 100%;
+    padding: 20px;
+    margin-top: auto;
+    text-align: center;
+    color: vars.$color-texto-secundario;
+    font-size: 1rem;
+}
+
+// Version para moviles 
+@media (max-width: 480px){
+    .encabezado{
+        padding: 20px 5%;
+    }
+    .contenedor{
+        margin: 40px auto;
+        margin-top: 45px;
+        margin-bottom: 30px;
+    }
+    .formulario-busqueda{
+        flex-direction: column;
+        button{
+            width: 100%;
+        }
+    }
+}
